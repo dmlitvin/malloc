@@ -14,10 +14,8 @@ ifeq ($(HOSTTYPE),)
 	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
 endif
 
-COMPRESS=ar rc
 CC=clang
 REMOVE=rm -rf
-FLAGS=-c -I libft/include -I include -Wall -Wextra -Werror
 
 LFTBIN=libft/libft.a
 
@@ -32,21 +30,21 @@ SRO=$(SRC:.c=.o)
 all: $(MALLOC)
 
 $(MALLOC): $(LFTBIN) $(SRO)
-	@$(COMPRESS) $(MALLOC) $(SRO)
+	@$(CC) -shared -o $(MALLOC) $(SRO)
 	@ln -sf $(MALLOC) libft_malloc.so
 
 $(LFTBIN):
 	@make -j -C libft
 
 %.o: %.c
-	@$(CC) $(FLAGS) $< -o $@
+	@$(CC) -c -I libft/include -I include -Wall -Wextra -Werror -fPIC $< -o $@
 
 clean:
-	@$(REMOVE) $(MALLOC)
+	@$(REMOVE) $(SRO)
 	@make -j clean -C libft
 
 fclean: clean
-	@$(REMOVE) $(SRO)
+	@$(REMOVE) $(MALLOC)
 	@$(REMOVE) libft_malloc.so
 	@make -j fclean -C libft
 
