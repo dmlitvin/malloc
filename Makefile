@@ -31,6 +31,7 @@ all: $(MALLOC)
 
 $(MALLOC): $(LFTBIN) $(SRO)
 	@$(CC) -shared -o $(MALLOC) $(SRO)
+	@strip -x $(MALLOC)
 	@ln -sf $(MALLOC) libft_malloc.so
 
 $(LFTBIN):
