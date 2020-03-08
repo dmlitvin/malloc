@@ -32,10 +32,10 @@ void *realloc(void *ptr, size_t size)
     return NULL;
 }
 
-void show_allow_mem(void)
+void show_alloc_mem(void)
 {
 }
 
-void show_allow_mem_ex(void)
+void show_alloc_mem_ex(void)
 {
 }
