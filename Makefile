@@ -30,7 +30,7 @@ SRO=$(SRC:.c=.o)
 all: $(MALLOC)
 
 $(MALLOC): $(LFTBIN) $(SRO)
-	@$(CC) -shared -o $(MALLOC) $(SRO)
+	@$(CC) -shared -o $(MALLOC) $(SRO) $(LFTBIN)
 	@strip -x $(MALLOC)
 	@ln -sf $(MALLOC) libft_malloc.so
 

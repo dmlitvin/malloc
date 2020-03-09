@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdbool.h>
 
+# include "libft.h"
+
 # define N 128
 # define M 512
 
@@ -56,8 +58,6 @@ t_block *alloc_block(t_zone *zone, const size_t size);
 bool is_placeable(t_zone *zone, const size_t size);
 
 #include <fcntl.h>
-
-extern int log_fd;
 
 #endif
 

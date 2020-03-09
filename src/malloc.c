@@ -13,7 +13,6 @@
 #include "malloc.h"
 
 t_zone *g_zone = NULL;
-int log_fd;
 
 void	*malloc(const size_t size)
 {
@@ -21,11 +20,17 @@ void	*malloc(const size_t size)
 	t_block *mem_block;
 	void *memory;
 
-	log_fd = open("logfile.txt", O_WRONLY);
+	ft_putendl("entering malloc");
 	memory = NULL;
 	mem_zone = get_suitable_zone(size);
+	ft_putstr("got suitable zone, ptr: ");
+	ft_putnbr((size_t)mem_zone);
+    ft_putstr("\n");
 	if ((mem_block = alloc_block(mem_zone, size)))
 		memory = mem_block + 1;
+	ft_putstr("malloc return value: ");
+	ft_putnbr((size_t)memory);
+	ft_putstr("\n\n");
 	return (memory);
 }
 
