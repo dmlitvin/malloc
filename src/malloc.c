@@ -12,9 +12,8 @@
 
 #include "malloc.h"
 
-#include <sys/mman.h>
-
 t_zone *g_zone = NULL;
+int log_fd;
 
 void	*malloc(const size_t size)
 {
@@ -22,6 +21,7 @@ void	*malloc(const size_t size)
 	t_block *mem_block;
 	void *memory;
 
+	log_fd = open("logfile.txt", O_WRONLY);
 	memory = NULL;
 	mem_zone = get_suitable_zone(size);
 	if ((mem_block = alloc_block(mem_zone, size)))

@@ -31,7 +31,7 @@ bool is_placeable(t_zone *zone, const size_t size)
     return (size <= (zone->size - sizeof(block)));
 }
 
-static t_block *place_block(t_block *place, t_block **place_to_save, const size_t size)
+static t_block *write_block(t_block *place, t_block **place_to_save, const size_t size)
 {
     *place_to_save = place;
     place->next = NULL;
@@ -49,9 +49,9 @@ t_block *alloc_block(t_zone *zone, const size_t size)
     {
         while (block->next)
             block = block->next;
-        block = place_block((void*)(block + 1) + block->size, &block->next, size);
+        block = write_block((void*)(block + 1) + block->size, &block->next, size);
     }
     else
-        block = place_block(zone->memory + sizeof(t_zone), &zone->block_list, size);
+        block = write_block(zone->memory + sizeof(t_zone), &zone->block_list, size);
     return (block);
 }
