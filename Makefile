@@ -21,7 +21,7 @@ LFTBIN=libft/libft.a
 
 MALLOC=libft_malloc_$(HOSTTYPE).so
 
-MALLOC_SRC=malloc.c
+MALLOC_SRC=malloc.c zone.c block.c
 
 SRC=$(addprefix src/, $(MALLOC_SRC))
 
@@ -37,7 +37,7 @@ $(MALLOC): $(LFTBIN) $(SRO)
 $(LFTBIN):
 	@make -j -C libft
 
-%.o: %.c
+%.o: %.c include/malloc.h
 	@$(CC) -c -I libft/include -I include -Wall -Wextra -Werror -fPIC $< -o $@
 
 clean:
