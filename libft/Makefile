@@ -51,7 +51,7 @@ $(NAME): $(SRO)
 	@$(COMPRESS) $(NAME) $(SRO)
 
 %.o: %.c include/libft.h
-	@$(CC) $(FLAGS) $< -o $@
+	@$(CC) $(FLAGS) $< -o $@ -fPIC
 
 all: $(NAME) $(SRC)
 
